@@ -31,4 +31,4 @@ def about():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)  # 원하는 포트 번호로 변경
+    app.run(debug=True)
