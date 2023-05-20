@@ -31,4 +31,18 @@ def insert_student(name, age, major):
     connection.close()
 
 
-insert_student("john", 21, "computer science")
+# insert_student("john", 21, "computer science")
+
+
+def query_student():
+    connection = sqlite3.connect("students.db")
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT * FROM students")
+    rows = cursor.fetchall()
+
+    connection.close()
+    return rows
+
+
+print(query_student())
