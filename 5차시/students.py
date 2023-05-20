@@ -24,22 +24,23 @@ def create_table():
 
 
 # 함수 실행 시 name, age, major에 해당하는 값을 받음
-def insert_student(name, age, major):
+def insert_student(id, name, age, major):
     connection = sqlite3.connect("students.db")
     cursor = connection.cursor()
 
     # 데이터를 주입하는 INSERT 구문
     cursor.execute(
-        """INSERT INTO students (name, age, major)
-                        VALUES (?, ?, ?)""",
-        (name, age, major),
+        """INSERT INTO students (id, name, age, major)
+                        VALUES (?, ?, ?, ?)""",
+        (id, name, age, major),
     )
 
     connection.commit()
     connection.close()
 
 
-# insert_student("john", 21, "computer science")
+# insert_student(1, "kim", 20, "robotics")
+# insert_student(4, "lee", 25, "computer enginnering")
 
 
 def query_students():
@@ -90,4 +91,4 @@ def delete_student(student_id):
 
 
 # delete_student(1)
-print(query_students())
+# print(query_students())
