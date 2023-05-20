@@ -15,7 +15,7 @@ def create_table():
     connection.close()
 
 
-create_table()
+# create_table()
 
 
 def insert_student(name, age, major):
@@ -45,4 +45,21 @@ def query_student():
     return rows
 
 
-print(query_student())
+# print(query_student())
+
+
+def update_student(student_id, name, age, major):
+    connection = sqlite3.connect("students.db")
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """UPDATE students SET name = ?,
+    age = ?, major = ? WHERE id =?""",
+        (name, age, major, student_id),
+    )
+    connection.commit()
+    connection.close()
+
+
+update_student(1, "john", 22, "Data science")
+print((query_student()))
