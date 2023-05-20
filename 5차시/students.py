@@ -61,5 +61,19 @@ def update_student(student_id, name, age, major):
     connection.close()
 
 
-update_student(1, "john", 22, "Data science")
-print((query_student()))
+# update_student(1, "john", 22, "Data science")
+# print((query_student()))
+
+
+def delete_student(student_id):
+    connection = sqlite3.connect("students.db")
+    cursor = connection.cursor()
+
+    cursor.execute("DELETE FROM students WHERE id = ?", (student_id,))
+
+    connection.commit()
+    connection.close()
+
+
+delete_student(1)
+print(query_students())
