@@ -45,3 +45,8 @@ def delete_task(task_id):
     connection.commit()
     connection.close()
     return redirect(url_for("index"))
+
+
+if __name__ == "__main__":
+    init_db()
+    app.run(debug=True)
