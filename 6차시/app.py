@@ -23,3 +23,15 @@ def index():
     tasks = cursor.fetchall()
 
     return render_template("index.html", tasks=tasks)
+
+
+@app.route("/add", methods=["POST"])
+def add_task():
+    task = request.form["task"]
+    connection = sqlite3.connect("example.db")
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO tasks (task) VALUES (?)", (task,))
+    connection.commit()
+    connection.close()
+
+    return redirect(url_for("index"))
