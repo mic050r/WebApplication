@@ -35,3 +35,13 @@ def add_task():
     connection.close()
 
     return redirect(url_for("index"))
+
+
+@app.route("/delete/<int:task_id>")
+def delete_task(task_id):
+    connection = sqlite3.connect("example.db")
+    cursor = connection.cursor()
+    cursor.execute("DELETE FROM tasks WHERE id=?", (task_id,))
+    connection.commit()
+    connection.close()
+    return redirect(url_for("index"))
