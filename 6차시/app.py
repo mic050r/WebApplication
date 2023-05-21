@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 # init_def 함수를 정의 하여 데이터 베이스를 초기화
-def init_def():
+def init_db():
     # 작업을 저장할 'task' 테이블을 생성
     connection = sqlite3.connect("example.db")  # example.db 파일과 연결을 생성
     cursor = connection.cursor()  # cursor 객체 생성
@@ -60,9 +60,9 @@ def delete_task(task_id):
 
 
 # 메인함수 생성
+# 데이터 베이스를 연결하기 위한 함수인 init_db()를 호출
+# flask를 실행하기 위한 함수인 app.run()함수를 호출
+# run함수 안에 인자값으로 debug=True옵션을 주면 터미널에서 애플리케이션이 동작하는 과정을 확인 가능
 if __name__ == "__main__":
-    # 데이터 베이스를 연결하기 위한 함수인 init_db()를 호출
     init_db()
-    # flask를 실행하기 위한 함수인 app.run()함수를 호출
     app.run(debug=True)
-    # run함수 안에 인자값으로 debug=True옵션을 주면 터미널에서 애플리케이션이 동작하는 과정을 확인 가능
