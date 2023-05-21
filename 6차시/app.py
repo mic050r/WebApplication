@@ -13,3 +13,13 @@ def init_def():
     )
     connection.commit()  # 저장
     connection.close()  # 종료
+
+
+@app.route("/")
+def index():
+    connection = sqlite3.connect("example.db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FRMO tasks")
+    tasks = cursor.fetchall()
+
+    return render_template("index.html", tasks=tasks)
